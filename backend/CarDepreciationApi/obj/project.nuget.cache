@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "IAfKO8D1HDU=",
+  "success": true,
+  "projectFilePath": "/Users/nabhanabedin/Desktop/Car_deprecation_value_tracker_app/backend/CarDepreciationApi/CarDepreciationApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/nabhanabedin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.10/microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "/Users/nabhanabedin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
