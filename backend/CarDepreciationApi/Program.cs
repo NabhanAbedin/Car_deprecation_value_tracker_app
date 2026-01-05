@@ -57,6 +57,8 @@ builder.Services.AddDbContext<CarDepreciationAppContext>(options =>
 );
 
 builder.Services.AddScoped<IValuationService, ValuationService>();
+builder.Services.AddScoped<IMarketService, MarketService>();
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddScoped<IKnnPredictionService, MockKnnPredictionService>();
