@@ -19,31 +19,31 @@ const ValuationPage = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-primary-50 flex items-center justify-center">
-                <h1 className="text-2xl text-primary-700">Loading...</h1>
+            <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+                <h1 className="text-2xl text-primary-200">Loading...</h1>
             </div>
         )
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-primary-50 flex items-center justify-center">
-                <h1 className="text-2xl text-red-600">Error loading valuation</h1>
+            <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+                <h1 className="text-2xl text-red-400">Error loading valuation</h1>
             </div>
         )
     }
 
     if (!valuation) {
         return (
-            <div className="min-h-screen bg-primary-50 flex items-center justify-center">
-                <h1 className="text-2xl text-gray-600">No valuation found</h1>
+            <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+                <h1 className="text-2xl text-gray-400">No valuation found</h1>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen bg-primary-50">
-            <nav className="bg-primary-600 text-white shadow-lg">
+        <div className="min-h-screen bg-primary-950">
+            <nav className="w-screen bg-primary-600 text-white shadow-lg">
                 <div className="container mx-auto px-4 py-4">
                     <h1 className="text-2xl font-bold">Valuation Details</h1>
                 </div>

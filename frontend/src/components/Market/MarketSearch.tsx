@@ -1,7 +1,7 @@
 import type { MarketSearchProps } from "../../types/interfaces"
 
 
-const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: MarketSearchProps) => {
+const MarketSearchComponent = ({marketSearch, setMarketSearch, onSearch}: MarketSearchProps) => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -13,11 +13,11 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setHasSearched(true);
+        onSearch();
     }
 
     return (
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <form onSubmit={handleSubmit} className="w-[80vw] mx-auto bg-white rounded-lg p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
                 <label htmlFor="brand" className="block text-sm font-medium text-gray-700 mb-1">Brand</label>
                 <input
@@ -26,7 +26,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="brand"
                     value={marketSearch.brand || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 
@@ -38,7 +38,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="model"
                     value={marketSearch.model || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 
@@ -50,7 +50,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="year"
                     value={marketSearch.year || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 
@@ -62,7 +62,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="conditionScore"
                     value={marketSearch.conditionScore || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 
@@ -74,7 +74,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="mileage"
                     value={marketSearch.mileage || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 
@@ -86,7 +86,7 @@ const MarketSearchComponent = ({marketSearch, setMarketSearch, setHasSearched}: 
                     name="soldPrice"
                     value={marketSearch.soldPrice || ''}
                     onChange={onChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-black"
                 />
             </div>
 

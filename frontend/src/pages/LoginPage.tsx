@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { LoginInfo } from "../types/interfaces";
 import { Link } from "react-router-dom";
+import AuthNav from "../components/nav/AuthNav";
 
 
 const LoginPage = () => {
@@ -29,7 +30,9 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-primary-50 flex items-center justify-center px-4">
+        <>
+        <AuthNav authPageType="login" />
+        <div className="min-h-screen bg-primary-950 flex items-center justify-center px-4">
             <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
                 <h1 className="text-3xl font-bold text-primary-700 mb-6 text-center">Log In</h1>
 
@@ -84,6 +87,7 @@ const LoginPage = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

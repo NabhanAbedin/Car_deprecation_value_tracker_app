@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { RegisterInfo } from "../types/interfaces";
 import { Link } from "react-router-dom";
+import AuthNav from "../components/nav/AuthNav";
 
 
 const RegisterPage = () => {
@@ -34,7 +35,9 @@ const RegisterPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-primary-50 flex items-center justify-center px-4">
+        <>
+        <AuthNav authPageType="register" />
+        <div className="min-h-screen bg-primary-950 flex items-center justify-center px-4">
             <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
                 <h1 className="text-3xl font-bold text-primary-700 mb-6 text-center">Register</h1>
 
@@ -104,6 +107,7 @@ const RegisterPage = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

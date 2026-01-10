@@ -21,7 +21,7 @@ export interface MarketSearch {
 export interface MarketSearchProps {
     marketSearch: MarketSearch;
     setMarketSearch: React.Dispatch<React.SetStateAction<MarketSearch>>;
-    setHasSearched: React.Dispatch<React.SetStateAction<boolean>>;
+    onSearch: () => void;
 }
 
 export interface MarketCard {
@@ -85,4 +85,13 @@ export interface ValuationDto {
     predictedPrice: string;
     createdAt: string; // or Date if you parse it
     valuationNeighbors: ValuationNeighbor[];
+}
+
+export interface MarketNavProps {
+    showMarketSearch: boolean;
+    setShowMarketSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface AuthNavProps {
+    authPageType: string;
 }

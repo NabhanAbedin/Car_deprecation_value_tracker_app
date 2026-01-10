@@ -46,24 +46,24 @@ const ValuationRequestPage = () => {
 
     if (isPending) {
         return (
-            <div className="min-h-screen bg-primary-50 flex items-center justify-center">
-                <h1 className="text-2xl text-primary-700">Loading...</h1>
+            <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+                <h1 className="text-2xl text-primary-200">Loading...</h1>
             </div>
         )
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-primary-50 flex items-center justify-center">
-                <h1 className="text-2xl text-red-600">Error submitting valuation request</h1>
+            <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+                <h1 className="text-2xl text-red-400">Error submitting valuation request</h1>
             </div>
         )
     }
 
 
     return (
-        <div className="min-h-screen bg-primary-50">
-            <nav className="bg-primary-600 text-white shadow-lg">
+        <div className="min-h-screen bg-primary-950">
+            <nav className="w-screen bg-primary-600 text-white shadow-lg">
                 <div className="container mx-auto px-4 py-4">
                     <h1 className="text-2xl font-bold">Get Car Valuation</h1>
                 </div>
