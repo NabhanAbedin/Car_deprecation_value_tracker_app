@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { type ValuationDto } from "../types/interfaces";
-import { getValuationById } from "../api/ValuationApi";
+import { getValuationById } from "../api/valuationApi";
 
 
 const ValuationPage = () => {

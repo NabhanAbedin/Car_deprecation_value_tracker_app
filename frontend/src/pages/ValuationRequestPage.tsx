@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ValuationRequest } from "../types/interfaces";
 import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { createValuation } from "../api/ValuationApi";
+import { createValuation } from "../api/valuationApi";
 
 
 const ValuationRequestPage = () => {

@@ -4,6 +4,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ValuationRequestPage from './pages/ValuationRequestPage';
 import ValuationPage from './pages/ValuationPage';
+import MarketByIdPage from './pages/MarketByIdPage';
+import HistoryPage from './pages/HistoryPage';
 
 
 
@@ -17,6 +19,8 @@ function App() {
         <Route path='/register' element={<RegisterPage/>} />
         <Route path='/valuationRequest' element={<ValuationRequestPage/>} />
         <Route path='/valuation/:id' element={<ValuationPage/>} />
+        <Route path='/marketData/:id' element={<MarketByIdPage/>} />
+        <Route path='/history' element={<HistoryPage/>} />
       </Routes>
     </BrowserRouter>
   )

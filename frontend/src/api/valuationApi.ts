@@ -28,3 +28,19 @@ export const getValuationById = async (id: string): Promise<ValuationDto> => {
 
     return res.json();
 }
+
+
+export const getUserHistory = async (): Promise<ValuationDto[]> => {
+    const res = await fetch(`${API_BASE_URL}/api/valuation/history`, {
+        method: 'GET',
+        headers: {
+            //headers for auth
+        }
+    })
+
+    if (!res.ok) { 
+        throw new Error('History data retrival failed');
+    }
+
+    return res.json();
+}
