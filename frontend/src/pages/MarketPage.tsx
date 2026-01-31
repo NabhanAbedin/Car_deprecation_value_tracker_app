@@ -18,7 +18,7 @@ const MarketPage = () => {
         mileage: '',
         soldPrice: '',
     });
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
     const [showMarketSearch, setShowMarketSearch] = useState<boolean>(false);
 
 
