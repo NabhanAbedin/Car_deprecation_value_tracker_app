@@ -104,11 +104,4 @@ Standard linear regression assumes a constant rate of depreciation ($y = mx + b$
 
 ---
 
-## 📚 Additional Documentation
 
-For comprehensive architecture decisions, implementation details, and step-by-step cloud setup instructions, see the full [project documentation](link-to-detailed-doc).
-
----
-
-**Author**: Nabhan  
-**License**: MIT
