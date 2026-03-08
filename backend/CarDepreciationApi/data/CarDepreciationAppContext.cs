@@ -1,6 +1,7 @@
 namespace CarDepreciationApi.data;
 using models.entities;
 using Microsoft.EntityFrameworkCore;
+using Pgvector.EntityFrameworkCore;
 
 
 public class CarDepreciationAppContext : DbContext
@@ -14,6 +15,8 @@ public class CarDepreciationAppContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasPostgresExtension("vector");
+        
         modelBuilder.Entity<User>()
             .HasMany(u => u.Valuations)
             .WithOne(v => v.User)
@@ -25,10 +28,21 @@ public class CarDepreciationAppContext : DbContext
             .WithOne(vn => vn.Valuation)
             .HasForeignKey(vn => vn.ValuationId);
 
-        modelBuilder.Entity<MarketData>()
-            .Property(m => m.SoldPrice)
-            .HasPrecision(18, 2);
-        
+        modelBuilder.Entity<MarketData>(entity =>
+        {
+            entity.Property(e => e.Id)
+            .hasDefaultValueSql("gen_random_uuid()");
+            entity.Property(m => m.SoldPrice)
+                .HasPrecision(18, 2);
+
+            entity.Property(m => m.FeaturesVector)
+                .HasColumnType("vector(8)");
+
+            entity.HasIndex(m => m.FeaturesVector)
+                .HasMethod("hnsw")
+                .HasOperators("vector_l2_ops");
+        });
+
         modelBuilder.Entity<User>()
             .HasIndex(u => u.Email)
             .IsUnique();

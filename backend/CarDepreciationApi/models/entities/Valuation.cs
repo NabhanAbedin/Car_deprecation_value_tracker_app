@@ -8,8 +8,9 @@ public class Valuation
     public string InputModel  {get; set;}
     public int InputYear  {get; set;}
     public int InputConditionScore  {get; set;}
-    public int InputMileage  {get; set;}
-    public int PredictedValue {get; set;}
+    public int InputKilometers  {get; set;}
+    public string InputFuelType { get; set; }
+    public int PredictedValue { get; set; }
     public DateTime ValuationDate {get; set;} =  DateTime.UtcNow;
     
     public User User {get; set;}
