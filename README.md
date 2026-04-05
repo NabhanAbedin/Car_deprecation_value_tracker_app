@@ -53,7 +53,7 @@ Standard Application Load Balancers (ALB) cost ~$16–$20/month. To bypass this,
 |---|---|
 | **Backend** | C# 12, ASP.NET Core, Entity Framework Core, Pgvector |
 | **ML Pipeline** | Python, Scikit-Learn (MinMaxScaler, KNN), Pandas |
-| **DevOps** | Docker, GitHub Actions (CI/CD), AWS CLI |
+| **DevOps** | Docker, AWS |
 | **Frontend** | React, TypeScript, Tailwind CSS, TanStack Query |
 
 ---
