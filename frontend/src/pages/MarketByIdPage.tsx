@@ -16,74 +16,63 @@ const MarketByIdPage = () => {
         enabled: !!id,
     })
 
-    if (isLoading) return <h1>Loading</h1>
-    if (error) return <h1>Error</h1>
-
-    if (!marketData) return <h1>Error Loading Data</h1>
-
-
     return (
-        <div className="min-h-screen bg-primary-950">
-            <nav className="w-screen bg-primary-600 text-white">
-                <div className="container mx-auto px-4 py-4">
-                    <h1 className="text-2xl font-bold">Vehicle Details</h1>
+        <div className="min-h-screen bg-white">
+            <nav className="w-screen bg-white border-b border-gray-100">
+                <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                    <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
+                    <button
+                        onClick={() => window.history.back()}
+                        className="text-sm text-gray-900 hover:text-gray-600 transition-colors"
+                    >
+                        ← Back
+                    </button>
                 </div>
             </nav>
 
-            <div className="container mx-auto px-4 py-8 max-w-4xl">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div className="w-full h-96 bg-gray-200">
+            <div className="container mx-auto px-4 py-12 max-w-3xl">
+                {isLoading ? (
+                    <div className="flex justify-center py-20">
+                        <p className="text-gray-400 text-sm">Loading...</p>
+                    </div>
+                ) : (error || !marketData) ? (
+                    <div className="flex justify-center py-20">
+                        <p className="text-gray-400 text-sm">Failed to load vehicle data.</p>
+                    </div>
+                ) : (
+                    <>
                         <img
                             src={marketData.img}
                             alt={`${marketData.brand} ${marketData.model}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-80 object-cover rounded-xl mb-8"
                         />
-                    </div>
 
-                    <div className="p-8">
-                        <div className="mb-6">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                                {marketData.brand} {marketData.model}
-                            </h2>
-                            <p className="text-xl text-gray-600">{marketData.year}</p>
-                        </div>
+                        <h2 className="text-4xl font-bold text-gray-900 mb-1">{marketData.brand} {marketData.model}</h2>
+                        <p className="text-gray-400 text-sm mb-10">{marketData.year}</p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div className="bg-primary-50 rounded-lg p-4">
-                                <p className="text-sm text-gray-600 mb-1">Condition Score</p>
-                                <p className="text-2xl font-bold text-primary-700">{marketData.conditionScore}/10</p>
+                        <div className="space-y-4">
+                            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Condition</span>
+                                <span className="text-sm font-medium text-gray-900">{marketData.conditionScore}/10</span>
                             </div>
-
-                            <div className="bg-primary-50 rounded-lg p-4">
-                                <p className="text-sm text-gray-600 mb-1">Mileage</p>
-                                <p className="text-2xl font-bold text-primary-700">{Number(marketData.mileage).toLocaleString()} mi</p>
+                            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Mileage</span>
+                                <span className="text-sm font-medium text-gray-900">{Number(marketData.kilometers).toLocaleString()} mi</span>
                             </div>
-
-                            <div className="bg-primary-50 rounded-lg p-4">
-                                <p className="text-sm text-gray-600 mb-1">Year</p>
-                                <p className="text-2xl font-bold text-primary-700">{marketData.year}</p>
+                            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Year</span>
+                                <span className="text-sm font-medium text-gray-900">{marketData.year}</span>
                             </div>
-
-                            <div className="bg-green-50 rounded-lg p-4">
-                                <p className="text-sm text-gray-600 mb-1">Sold Price</p>
-                                <p className="text-2xl font-bold text-green-700">${Number(marketData.soldPrice).toLocaleString()}</p>
+                            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Sold Price</span>
+                                <span className="text-sm font-bold text-gray-900">${Number(marketData.soldPrice).toLocaleString()}</span>
                             </div>
                         </div>
-
-                        <div className="flex gap-4">
-                            <button
-                                onClick={() => window.history.back()}
-                                className="flex-1 bg-gray-200 hover:bg-gray-300 text-white font-semibold py-3 px-6 rounded-lg transition"
-                            >
-                                Back to Search
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </>
+                )}
             </div>
         </div>
     )
-
 }
 
 export default MarketByIdPage;

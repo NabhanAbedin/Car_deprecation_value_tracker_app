@@ -32,13 +32,14 @@ const LoginPage = () => {
     return (
         <>
         <AuthNav authPageType="login" />
-        <div className="min-h-screen bg-primary-950 flex items-center justify-center px-4">
-            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-                <h1 className="text-3xl font-bold text-primary-700 mb-6 text-center">Log In</h1>
+        <div className="min-h-screen bg-white flex items-center justify-center px-4">
+            <div className="w-full max-w-sm">
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome back</h1>
+                <p className="text-gray-400 mb-10 text-sm">Sign in to your account</p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="username" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
                             Username
                         </label>
                         <input
@@ -47,13 +48,14 @@ const LoginPage = () => {
                             name="username"
                             value={loginInfo.username}
                             onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:border-primary-500 transition-colors"
+                            placeholder="your username"
                             required
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="password" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
                             Password
                         </label>
                         <input
@@ -62,29 +64,26 @@ const LoginPage = () => {
                             name="password"
                             value={loginInfo.password}
                             onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:border-primary-500 transition-colors"
+                            placeholder="••••••••"
                             required
                         />
                     </div>
 
-                    <div>
-                        <button
-                            type="submit"
-                            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-6 rounded-lg transition"
-                        >
-                            Log In
-                        </button>
-                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 rounded-xl transition mt-4"
+                    >
+                        Log In
+                    </button>
                 </form>
 
-                <div className="mt-6 text-center">
-                    <p className="text-gray-600">
-                        Don't have an account?{' '}
-                        <Link to={'/register'} className="text-primary-600 hover:text-primary-700 font-medium">
-                            Create one here
-                        </Link>
-                    </p>
-                </div>
+                <p className="mt-8 text-gray-400 text-sm text-center">
+                    Don't have an account?{' '}
+                    <Link to={'/register'} className="text-primary-600 hover:text-primary-700 font-medium">
+                        Create one
+                    </Link>
+                </p>
             </div>
         </div>
         </>

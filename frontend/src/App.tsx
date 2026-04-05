@@ -6,6 +6,7 @@ import ValuationRequestPage from './pages/ValuationRequestPage';
 import ValuationPage from './pages/ValuationPage';
 import MarketByIdPage from './pages/MarketByIdPage';
 import HistoryPage from './pages/HistoryPage';
+import HistoryByIdPage from './pages/HistoryByIdPage';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/valuation/:id' element={<ValuationPage/>} />
         <Route path='/marketData/:id' element={<MarketByIdPage/>} />
         <Route path='/history' element={<HistoryPage/>} />
+        <Route path='/history/:id' element={<HistoryByIdPage />} />
       </Routes>
     </BrowserRouter>
   )

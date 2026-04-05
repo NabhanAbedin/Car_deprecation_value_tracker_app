@@ -7,5 +7,6 @@ public interface IValuationService
 {
     Task<IEnumerable<Valuation>> GetValuationHistory(Guid userId);
     Task<Valuation> GetValuation(Guid id);
-    Task<Valuation> CreateValuation(Guid userId, ValuationDto valuation);
+    Task<ValuationResponseDto> CreateValuation(Guid userId, ValuationDto valuation);
+    Task<HistoryResponseDto> GetValHistoryById(Guid userId, Guid valuationId);
 }

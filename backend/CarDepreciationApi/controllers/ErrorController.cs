@@ -18,6 +18,7 @@ public class ErrorController : ControllerBase
     {
         var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
         var exception = context?.Error;
+        Console.WriteLine(exception);
 
         return Problem(
             title: "An error occurred while processing your request",

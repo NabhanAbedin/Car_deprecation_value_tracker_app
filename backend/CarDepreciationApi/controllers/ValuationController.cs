@@ -23,7 +23,7 @@ public class ValuationController : ControllerBase
     public async Task<ActionResult<IEnumerable<Valuation>>> GetValuationHistory()
     {
         var userIdClaim = User.FindFirst("sub")?.Value;
-
+        
         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
             return Unauthorized();
@@ -32,6 +32,23 @@ public class ValuationController : ControllerBase
         var valuations = await _valuationService.GetValuationHistory(userId);
         
         return Ok(valuations);
+    }
+
+    [HttpGet("history/{id:guid}")]
+    [Authorize]
+    public async Task<ActionResult<HistoryResponseDto>> GetHistoryById(Guid id)
+    {
+         var userIdClaim = User.FindFirst("sub")?.Value;
+        
+         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
+         {
+             return Unauthorized();
+         }
+
+        var valuation =
+            await _valuationService.GetValHistoryById(userId, id);
+
+        return Ok(valuation);
     }
 
     [HttpGet("{id:guid}")]
@@ -49,19 +66,19 @@ public class ValuationController : ControllerBase
 
     [HttpPost("predict")]
     [Authorize]
-    public async Task<IActionResult> CreatePrediction([FromBody] ValuationDto valuationDto)
+    public async Task<ActionResult<ValuationResponseDto>> CreatePrediction([FromBody] ValuationDto valuationDto)
     {
         
         var userIdClaim = User.FindFirst("sub")?.Value;
-
+        
         if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
             return Unauthorized();
         }
         
         
-        var valuation = await _valuationService.CreateValuation(userId, valuationDto);
+        var valuationReponse = await _valuationService.CreateValuation(userId, valuationDto);
 
-        return CreatedAtAction(nameof(GetValuation), new { id = valuation.Id }, valuation);
+        return CreatedAtAction(nameof(GetValuation), new { id = valuationReponse.ValuationId }, valuationReponse);
     }
 }

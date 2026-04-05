@@ -1,7 +1,9 @@
+using CarDepreciationApi.models.entities;
+
 namespace CarDepreciationApi.models.dtos;
 
-public class CaluclationResponse
+public class CalculationResponse
 {
     public int PredictedValue { get; set; }
-    public List<MarketDataDto> Neighbors { get; set; }
+    public List<MarketData> Neighbors { get; set; }
 }

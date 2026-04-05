@@ -5,6 +5,8 @@ using CarDepreciationApi.data;
 using CarDepreciationApi.services.implementations;
 using CarDepreciationApi.services.interfaces;
 using Microsoft.EntityFrameworkCore;
+using Amazon.Lambda;
+using Amazon;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,15 +63,21 @@ builder.Services.AddDbContext<CarDepreciationAppContext>(options =>
 
 builder.Services.AddScoped<IValuationService, ValuationService>();
 builder.Services.AddScoped<IMarketService, MarketService>();
+builder.Services.AddScoped<ICalculationService, CalcluationService>();
+builder.Services.AddSingleton<IAmazonLambda>(new AmazonLambdaClient(RegionEndpoint.USEast1));
 
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddScoped<IKnnPredictionService, MockKnnPredictionService>();
+    builder.Services.AddScoped<IKnnService, DevKnnService>();
+}
+else
+{
+    builder.Services.AddScoped<IKnnService, ProdKnnService>();
 }
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment()) 
 {
     app.UseDeveloperExceptionPage();
 }

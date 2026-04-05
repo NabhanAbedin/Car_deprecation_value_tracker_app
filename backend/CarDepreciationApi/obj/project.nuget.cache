@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "d/knHK3EUyY=",
-  "success": false,
+  "dgSpecHash": "wE7PNrZBsjU=",
+  "success": true,
   "projectFilePath": "/Users/nabhanabedin/Desktop/Car_deprecation_value_tracker_app/backend/CarDepreciationApi/CarDepreciationApi.csproj",
   "expectedPackageFiles": [
     "/Users/nabhanabedin/.nuget/packages/awssdk.core/4.0.3.15/awssdk.core.4.0.3.15.nupkg.sha512",
@@ -41,8 +41,8 @@
     "/Users/nabhanabedin/.nuget/packages/microsoft.identitymodel.tokens/8.15.0/microsoft.identitymodel.tokens.8.15.0.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
-    "/Users/nabhanabedin/.nuget/packages/npgsql/9.0.0/npgsql.9.0.0.nupkg.sha512",
-    "/Users/nabhanabedin/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.0/npgsql.entityframeworkcore.postgresql.9.0.0.nupkg.sha512",
+    "/Users/nabhanabedin/.nuget/packages/npgsql/9.0.1/npgsql.9.0.1.nupkg.sha512",
+    "/Users/nabhanabedin/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.1/npgsql.entityframeworkcore.postgresql.9.0.1.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/pgvector/0.3.2/pgvector.0.3.2.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/pgvector.entityframeworkcore/0.3.0/pgvector.entityframeworkcore.0.3.0.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
@@ -60,17 +60,5 @@
     "/Users/nabhanabedin/.nuget/packages/system.text.json/9.0.0/system.text.json.9.0.0.nupkg.sha512",
     "/Users/nabhanabedin/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Npgsql.EntityFrameworkCore.PostgreSQL from 9.0.1 to 9.0.0. Reference the package directly from the project to select a different version. \n CarDepreciationApi -> Pgvector.EntityFrameworkCore 0.3.0 -> Npgsql.EntityFrameworkCore.PostgreSQL (>= 9.0.1) \n CarDepreciationApi -> Npgsql.EntityFrameworkCore.PostgreSQL (>= 9.0.0)",
-      "projectPath": "/Users/nabhanabedin/Desktop/Car_deprecation_value_tracker_app/backend/CarDepreciationApi/CarDepreciationApi.csproj",
-      "filePath": "/Users/nabhanabedin/Desktop/Car_deprecation_value_tracker_app/backend/CarDepreciationApi/CarDepreciationApi.csproj",
-      "libraryId": "Npgsql.EntityFrameworkCore.PostgreSQL",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }

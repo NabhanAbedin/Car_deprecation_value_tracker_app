@@ -17,11 +17,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: inherit;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: inherit;
 }
 
 body {
@@ -54,6 +54,13 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+nav button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
 }
 
 @media (prefers-color-scheme: light) {

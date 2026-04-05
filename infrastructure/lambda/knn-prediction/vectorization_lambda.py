@@ -27,6 +27,10 @@ def event_handler(event, context):
         condition = int(event.get('InputConditionScore'))
         kilometers = int(event.get('InputKilometers'))
         fuel_type = event.get('InputFuelType', '').upper()
+        transmission = event.get('InputTransmission', '').upper()
+
+        if transmission != 'MANUAL' and transmission != 'AUTOMATIC':
+            transmission = "AUTOMATIC"
 
         current_year = datetime.now().year
         age = current_year - year
@@ -34,12 +38,15 @@ def event_handler(event, context):
         is_petrol = 1 if 'PETROL' in fuel_type else 0
         is_diesel = 1 if 'DIESEL' in fuel_type else 0
 
+        is_manual = 1 if 'MANUAL' in transmission else 0
+        is_automatic = 1 if 'AUTOMATIC' in transmission else 0
+
         scalar = load_scalar()
 
         numerical_features = [[age, kilometers, condition, 1]]
         scaled_nums = scalar.transform(numerical_features)[0]
 
-        final_vector = [float(x) for x in scaled_nums] + [is_petrol, is_diesel, 0, 0]
+        final_vector = [float(x) for x in scaled_nums] + [is_petrol, is_diesel, is_manual, is_automatic]
 
         
         return {

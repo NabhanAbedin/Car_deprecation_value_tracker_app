@@ -5,18 +5,17 @@ import { type AuthNavProps } from "../../types/interfaces";
 const AuthNav = ({authPageType}: AuthNavProps) => {
     
     return (
-        <nav className="w-screen bg-primary-600 text-white">
+        <nav className="w-screen bg-white border-b border-gray-100 text-gray-900">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Car Market</h1>
-                <div className="flex gap-4 items-center">
-                    <Link to={'/'} style={{color: 'white', textDecoration: 'none'}}>Home</Link>
+                <h1 className="text-xl font-bold tracking-tight">Car Market</h1>
+                <div className="flex gap-6 items-center text-sm">
+                    <Link to={'/'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Home</Link>
                     {authPageType === 'login' && (
-                        <Link to={'/register'} style={{color: 'white', textDecoration: 'none'}}>Register</Link>
+                        <Link to={'/register'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Register</Link>
                     )}
                     {authPageType === 'register' && (
-                        <Link to={'/login'} style={{color: 'white', textDecoration: 'none'}}>Login</Link>
+                        <Link to={'/login'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Log in</Link>
                     )}
-
                 </div>
             </div>
         </nav>

@@ -26,12 +26,13 @@ public class CarDepreciationAppContext : DbContext
         modelBuilder.Entity<Valuation>()
             .HasMany(v => v.ValuationNeighbors)
             .WithOne(vn => vn.Valuation)
-            .HasForeignKey(vn => vn.ValuationId);
+            .HasForeignKey(vn => vn.ValuationId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<MarketData>(entity =>
         {
             entity.Property(e => e.Id)
-            .hasDefaultValueSql("gen_random_uuid()");
+            .HasDefaultValueSql("gen_random_uuid()");
             entity.Property(m => m.SoldPrice)
                 .HasPrecision(18, 2);
 

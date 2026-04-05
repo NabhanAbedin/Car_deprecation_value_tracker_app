@@ -24,6 +24,9 @@ def data_cleaner(csv_path):
     df = df.drop(columns=["Insurance"], errors="ignore")
     df = df.dropna(subset=["SoldPrice"])
 
+    usd_conversion = 0.012
+    df["SoldPrice"] = (df['SoldPrice'] * usd_conversion).round(2)
+
     def add_spaces_at_caps(text):
         return re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', str(text))
     

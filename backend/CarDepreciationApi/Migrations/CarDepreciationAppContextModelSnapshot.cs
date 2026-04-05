@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Pgvector;
 
 #nullable disable
 
@@ -20,13 +21,18 @@ namespace CarDepreciationApi.Migrations
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "vector");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("CarDepreciationApi.models.entities.MarketData", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Brand")
                         .IsRequired()
@@ -35,28 +41,44 @@ namespace CarDepreciationApi.Migrations
                     b.Property<int>("ConditionScore")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Img")
+                    b.Property<Vector>("FeaturesVector")
+                        .HasColumnType("vector(8)");
+
+                    b.Property<string>("FuelType")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Mileage")
+                    b.Property<string>("Img")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Kilometers")
                         .HasColumnType("integer");
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("SoldDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("SoldPrice")
                         .HasPrecision(18, 2)
                         .HasColumnType("integer");
 
+                    b.Property<string>("Transmission")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("Year")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FeaturesVector");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("FeaturesVector"), "hnsw");
+                    NpgsqlIndexBuilderExtensions.HasOperators(b.HasIndex("FeaturesVector"), new[] { "vector_l2_ops" });
 
                     b.ToTable("MarketData");
                 });
@@ -92,6 +114,10 @@ namespace CarDepreciationApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Vector>("FeaturesVector")
+                        .IsRequired()
+                        .HasColumnType("vector");
+
                     b.Property<string>("InputBrand")
                         .IsRequired()
                         .HasColumnType("text");
@@ -99,10 +125,18 @@ namespace CarDepreciationApi.Migrations
                     b.Property<int>("InputConditionScore")
                         .HasColumnType("integer");
 
-                    b.Property<int>("InputMileage")
+                    b.Property<string>("InputFuelType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("InputKilometers")
                         .HasColumnType("integer");
 
                     b.Property<string>("InputModel")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("InputTransmission")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -39,12 +39,12 @@ public class MarketService : IMarketService
            marketQuery = marketQuery.Where(x => x.ConditionScore == marketSearch.ConditionScore);
        }
 
-       if (marketSearch.Mileage.HasValue)
+       if (marketSearch.Kilometers.HasValue)
        {
-           var mileageMin = Math.Max(marketSearch.Mileage.Value - 3000, 0);
-           var mileageMax = marketSearch.Mileage.Value + 3000;
+           var KilometersMin = Math.Max(marketSearch.Kilometers.Value - 3000, 0);
+           var KilometersMax = marketSearch.Kilometers.Value + 3000;
            
-           marketQuery = marketQuery.Where(x => x.Mileage <= mileageMax &&  x.Mileage >= mileageMin);
+           marketQuery = marketQuery.Where(x => x.Kilometers <= KilometersMax &&  x.Kilometers >= KilometersMin);
        }
 
        if (marketSearch.SoldPrice.HasValue)

@@ -4,7 +4,9 @@ import pandas as pd
 import re
 from datetime import datetime
 import random
+import joblib 
 from sklearn.preprocessing import MinMaxScaler
+
 
 def data_cleaner(csv_path):
 
@@ -19,6 +21,9 @@ def data_cleaner(csv_path):
     
     df = df.drop(columns=["Insurance"], errors="ignore")
     df = df.dropna(subset=["SoldPrice"])
+
+    usd_conversion = 0.012
+    df["SoldPrice"] = (df['SoldPrice'] * usd_conversion).round(2)
 
     def add_spaces_at_caps(text):
         return re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', str(text))
@@ -82,6 +87,8 @@ def main(file_path):
 
     final_df, scaler = generate_vectors(cleaned_df)
     final_df.to_csv("final_car_vectors.csv", index=False)
+
+    joblib.dump(scaler, "scaler")
 
     print(final_df.head(5).to_string())
 

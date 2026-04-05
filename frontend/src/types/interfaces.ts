@@ -30,7 +30,7 @@ export interface MarketCard {
     model: string,
     year: string,
     conditionScore: string,
-    mileage: string,
+    kilometers: string,
     soldPrice: string,
     img: string
 }
@@ -41,7 +41,7 @@ export interface MarketDataDto {
     model: string,
     year: string,
     conditionScore: string,
-    mileage: string,
+    kilometers: string,
     soldPrice: string,
     img: string
 }
@@ -55,7 +55,9 @@ export interface ValuationRequest {
     inputModel: string,
     inputYear: string,
     inputConditionScore: string,
-    inputMileage: string,
+    inputKilometers: string,
+    inputTransmission: string,
+    inputFuelType: string,
 }
 
 export interface ValuationNeighbor {
@@ -94,4 +96,93 @@ export interface MarketNavProps {
 
 export interface AuthNavProps {
     authPageType: string;
+}
+
+
+
+interface Neighbors {
+    id: string;
+    brand: string;
+    model: string;
+    year: number;
+    conditionScore: number;
+    kilometers: number;
+    soldPrice: number;
+    age: number;
+    transmission: string;
+    fuelType: number;
+    owner: string;
+    featuresVector: {
+        memory: number[];
+    };
+    img: string;
+}
+
+interface newValuation {
+    id: string;
+    userId: string;
+    inputBrand: string;
+    inputModel: string;
+    inputYear: number;
+    inputConditionScore: number;
+    inputKilometers: number;
+    inputFuelType: string;
+    inputTransmission: string;
+    predictedValue: number;
+    valuationDate: string;
+    featuresVector: {
+        memory: number[];
+    };
+    user: null;
+    valuationNeighbors: null;
+}
+
+export interface valuationRequestDto {
+    calcluatedNeigbors: {
+        predictedValue: number;
+        neighbors: Neighbors[];
+    }
+    valuationId: string;
+    
+
+}
+
+export interface ValuationResultProps {
+    neighbors: Neighbors[];
+    predictedValue: number;
+}
+
+export interface HistoryResponse {
+    valuation: {
+        inputBrand: string;
+        inputModel: string;
+        inputYear: number;
+        inputConditionScore: number;
+        inputKilometers: number;
+        inputTransmission: string;
+        inputFuelType: string;
+        predictedValue: number;
+    };
+    neighbors: {
+        brand: string;
+        model: string;
+        year: number;
+        conditionScore: number;
+        kilometers: number;
+        soldPrice: number;
+    }[];
+}
+
+export interface Valuation {
+    id: string;
+    userId: string;
+    inputBrand: string;
+    inputModel: string;
+    inputYear: number;
+    inputConditionScore: number;
+    inputKilometers: number;
+    inputFuelType: string;
+    inputTransmission: string;
+    predictedValue: number;
+    valuationDate: string;
 }
