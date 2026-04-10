@@ -1,15 +1,18 @@
 import { useState } from "react";
 import type { RegisterInfo } from "../types/interfaces";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthNav from "../components/nav/AuthNav";
+import { CognitoUserAttribute } from "amazon-cognito-identity-js";
+import { userPool } from "../lib/cognito";
 
 
 const RegisterPage = () => {
     const [registerInfo, setRegisterInfo] = useState<RegisterInfo>({
-        username: '',
+        email: '',
         password: '',
         confirmPassword: '',
     });
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -32,6 +35,19 @@ const RegisterPage = () => {
         }
 
         //submitting info to amazon incongito services
+        const attributes = [
+            new CognitoUserAttribute({Name: 'email', Value: registerInfo.email})
+        ];
+
+        userPool.signUp(registerInfo.email, registerInfo.password, attributes, [], (err, result) => {
+            if (err) {
+                alert(err.message);
+                return;
+            }
+            
+            navigate('/verify', {state: {email: registerInfo.email}});
+            
+        })
     }
 
     return (
@@ -43,18 +59,19 @@ const RegisterPage = () => {
                 <p className="text-gray-400 mb-10 text-sm">Get started for free</p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                
                     <div>
-                        <label htmlFor="username" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                            Username
+                        <label htmlFor="email" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
+                            Email
                         </label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            value={registerInfo.username}
+                            id="email"
+                            name="email"
+                            value={registerInfo.email}
                             onChange={handleChange}
                             className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:border-primary-500 transition-colors"
-                            placeholder="your username"
+                            placeholder="your email"
                             required
                         />
                     </div>

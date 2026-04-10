@@ -1,10 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { type MarketNavProps } from "../../types/interfaces";
+import { userPool } from "../../lib/cognito";
 
 
 
 const MarketNav = ({showMarketSearch, setShowMarketSearch}: MarketNavProps) => {
-    
+    const isLoggedIn = !!localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        const user = userPool.getCurrentUser();
+        if (user) user.signOut();
+        localStorage.removeItem('token');
+        navigate('/');
+    }
+
     return (
         <nav className="w-screen bg-white border-b border-gray-100 text-gray-900">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -16,8 +26,23 @@ const MarketNav = ({showMarketSearch, setShowMarketSearch}: MarketNavProps) => {
                     >
                         {showMarketSearch ? 'Hide' : 'Show'} Filters
                     </button>
-                    <Link to={'/login'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Log in</Link>
-                    <Link to={'/register'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Register</Link>
+                    {isLoggedIn ? (
+                        <>
+                            <Link to={'/valuationRequest'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Get Valuation</Link>
+                            <Link to={'/history'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">History</Link>
+                            <button
+                            onClick={() => logOut()}
+                            className="text-gray-900 hover:text-gray-600 transition-colors cursor-pointer"
+                        >
+                            Log out
+                        </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to={'/login'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Log in</Link>
+                            <Link to={'/register'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Register</Link>
+                        </>
+                    )}
                 </div>
             </div>
         </nav>

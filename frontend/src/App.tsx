@@ -7,6 +7,7 @@ import ValuationPage from './pages/ValuationPage';
 import MarketByIdPage from './pages/MarketByIdPage';
 import HistoryPage from './pages/HistoryPage';
 import HistoryByIdPage from './pages/HistoryByIdPage';
+import VerifyPage from './pages/VerifyPage';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/marketData/:id' element={<MarketByIdPage/>} />
         <Route path='/history' element={<HistoryPage/>} />
         <Route path='/history/:id' element={<HistoryByIdPage />} />
+        <Route path='/verify' element={<VerifyPage />} />
       </Routes>
     </BrowserRouter>
   )

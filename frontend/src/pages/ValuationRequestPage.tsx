@@ -6,6 +6,7 @@ import { createValuation } from "../api/valuationApi";
 import ValuationResult from "../components/Valuation/ValuationResult";
 
 
+
 const ValuationRequestPage = () => {
     const [valuationRequest, setValuationRequest] = useState<ValuationRequest>({
         inputBrand: '',
@@ -68,6 +69,7 @@ const ValuationRequestPage = () => {
             <nav className="w-screen bg-white border-b border-gray-100">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
+                    <Link to="/" className="text-sm text-black hover:text-gray-600 transition-colors">← Back</Link>
                 </div>
             </nav>
 

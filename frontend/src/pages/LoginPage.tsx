@@ -1,14 +1,18 @@
 import { useState } from "react";
 import type { LoginInfo } from "../types/interfaces";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthNav from "../components/nav/AuthNav";
+import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
+import { userPool } from "../lib/cognito";
 
 
 const LoginPage = () => {
     const [loginInfo, setLoginInfo] = useState<LoginInfo>({
-        username: '',
+        email: '',
         password: ''
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -27,6 +31,27 @@ const LoginPage = () => {
         }
 
         //submitting info to amazon incongito services
+        const authDetails = new AuthenticationDetails({
+            Username: loginInfo.email,
+            Password: loginInfo.password
+        });
+
+        const cognitoUser = new CognitoUser({
+            Username: loginInfo.email,
+            Pool: userPool,
+        })
+
+        cognitoUser.authenticateUser(authDetails, {
+            onSuccess: (session) => {
+                const token = session.getIdToken().getJwtToken();
+
+                localStorage.setItem('token', token);
+                navigate('/valuationrequest');
+            },
+            onFailure: (err) => {
+                alert(err.message);
+            }
+        })
     }
 
     return (
@@ -39,17 +64,17 @@ const LoginPage = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="username" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                            Username
+                        <label htmlFor="email" className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
+                            Email
                         </label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            value={loginInfo.username}
+                            id="email"
+                            name="email"
+                            value={loginInfo.email}
                             onChange={handleChange}
                             className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:border-primary-500 transition-colors"
-                            placeholder="your username"
+                            placeholder="your email"
                             required
                         />
                     </div>

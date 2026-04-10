@@ -53,16 +53,21 @@ const MarketPage = () => {
 
     if (error) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
-                <div className="flex flex-col items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-10 py-8 shadow-sm">
-                    <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                    </svg>
-                    <p className="text-red-600 font-semibold text-lg">Failed to load market data</p>
-                    <p className="text-red-400 text-sm">{error.message || 'Something went wrong. Please try again.'}</p>
+            <div className="min-h-screen bg-white flex flex-col">
+                <MarketNav showMarketSearch={showMarketSearch} setShowMarketSearch={setShowMarketSearch} />
+                <div className="flex-1 flex flex-col items-center justify-center gap-4 px-4">
+                    <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg className="w-7 h-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-gray-900 font-semibold text-lg tracking-tight">Failed to load market data</p>
+                        <p className="text-gray-400 text-sm mt-1">{error.message || 'Something went wrong. Please try again.'}</p>
+                    </div>
                     <button
                         onClick={handleSearch}
-                        className="mt-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-5 py-2 rounded-lg transition"
+                        className="mt-1 bg-gray-900 hover:bg-gray-700 text-white text-sm font-medium px-6 py-2.5 rounded-lg transition-colors cursor-pointer"
                     >
                         Retry
                     </button>
