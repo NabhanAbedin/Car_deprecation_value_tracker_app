@@ -3,12 +3,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 
-export const createValuation = async (valuationData: ValuationRequest): Promise<valuationRequestDto> => {
+export const createValuation = async (valuationData: ValuationRequest): 
+Promise<valuationRequestDto> => {
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_BASE_URL}/api/valuation/predict`, {
         method: 'POST',
         headers: {
-            //need to include auth header later
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(valuationData)
     });
@@ -33,10 +35,12 @@ export const getValuationById = async (id: string): Promise<ValuationDto> => {
 
 
 export const getUserHistory = async (): Promise<Valuation[]> => {
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_BASE_URL}/api/valuation/history`, {
         method: 'GET',
         headers: {
-            //headers for auth
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     })
 
@@ -48,11 +52,12 @@ export const getUserHistory = async (): Promise<Valuation[]> => {
 }
 
 export const getHistoryById = async (id: string): Promise<HistoryResponse> => {
-
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_BASE_URL}/api/valuation/history/${id}`, {
         method: 'GET',
         headers: {
-            //auth headers
+           'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     })
 
