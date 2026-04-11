@@ -69,6 +69,7 @@ builder.Services.AddSingleton<IAmazonLambda>(new AmazonLambdaClient(RegionEndpoi
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddScoped<IKnnService, DevKnnService>();
+    builder.Services.AddScoped<IUserService, UserService>();
 }
 else
 {

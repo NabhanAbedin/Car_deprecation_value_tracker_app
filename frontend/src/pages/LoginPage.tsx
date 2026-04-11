@@ -46,7 +46,7 @@ const LoginPage = () => {
                 const token = session.getIdToken().getJwtToken();
 
                 localStorage.setItem('token', token);
-                navigate('/valuationrequest');
+                navigate('/');
             },
             onFailure: (err) => {
                 alert(err.message);

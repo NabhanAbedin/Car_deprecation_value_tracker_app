@@ -3,28 +3,36 @@ import AuthNav from "../components/nav/AuthNav";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { userPool } from "../lib/cognito";
+import { addUser } from "../api/userApi";
 
 const VerifyPage = () => {
     const [verifyCode, setVerifyCode] = useState('');
     const location = useLocation();
     const email = location.state?.email;
+    const sub = location.state?.sub;
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!email) navigate('/register');
-    }, [email]);
+        if (!email || sub) navigate('/register');
+    }, [email, sub]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         
        const cognitoUser = new CognitoUser({Username: email, Pool: userPool});
 
-       cognitoUser.confirmRegistration(verifyCode, true,(err, result) => {
+       cognitoUser.confirmRegistration(verifyCode, true, async (err, result) => {
         if (err) {
             alert(err.message);
             return;
         }
 
+        if (import.meta.env.DEV) {
+            await addUser(sub, email);
+        }
+
+       
         navigate('/login');
        });
     };

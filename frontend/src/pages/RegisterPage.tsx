@@ -45,7 +45,7 @@ const RegisterPage = () => {
                 return;
             }
             
-            navigate('/verify', {state: {email: registerInfo.email}});
+            navigate('/verify', {state: {email: registerInfo.email, sub: result!.userSub}});
             
         })
     }
