@@ -31,7 +31,8 @@ const RegisterPage = () => {
         }
 
         if (registerInfo.password !== registerInfo.confirmPassword) {
-            alert('passwords dont match')
+            alert('passwords dont match');
+            return;
         }
 
         //submitting info to amazon incongito services

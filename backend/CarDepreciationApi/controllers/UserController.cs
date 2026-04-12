@@ -9,6 +9,7 @@ namespace CarDepreciationApi.controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IWebHostEnvironment _env;
 
     public UserController(IUserService userService, IWebHostEnvironment env)
     {
@@ -19,7 +20,7 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddUser([FromBody] NewUserDto newUserDto)
     {
-        if (!_env.IsDevelopement()) return NotFound();
+        if (!_env.IsDevelopment()) return NotFound();
 
         var userId = Guid.Parse(newUserDto.UserId);
 

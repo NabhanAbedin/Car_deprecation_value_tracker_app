@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 using CarDepreciationApi.data;
 using CarDepreciationApi.services.implementations;
 using CarDepreciationApi.services.interfaces;
@@ -8,9 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Amazon.Lambda;
 using Amazon;
 
+IdentityModelEventSource.ShowPII = true;
+IdentityModelEventSource.LogCompleteSecurityArtifact = true;
+
 var builder = WebApplication.CreateBuilder(args);
 
-var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
+//var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
 
 builder.Services.AddAuthentication(options =>
     {
@@ -19,23 +23,14 @@ builder.Services.AddAuthentication(options =>
     })
     .AddJwtBearer(options =>
     {
-        // Your validation parameters logic here
-        if (builder.Environment.IsDevelopment())
+        options.Authority = $"https://cognito-idp.{builder.Configuration["AWS:Region"]}.amazonaws.com/{builder.Configuration["AWS:UserPoolId"]}";
+        options.Audience = builder.Configuration["AWS:ClientId"];
+        options.MapInboundClaims = false;
+        options.TokenValidationParameters = new TokenValidationParameters
         {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key)
-            };
-        }
-        else
-        {
-            // AWS Cognito will go here
-            throw new NotImplementedException();
-        }
+            RoleClaimType = "cognito:groups",
+            NameClaimType = "sub"
+        };
     });
 
 builder.Services.AddCors(options =>

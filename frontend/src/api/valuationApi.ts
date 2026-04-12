@@ -1,3 +1,4 @@
+import { getFreshJwt } from "../lib/getFreshJWT";
 import type { HistoryResponse, Valuation, ValuationDto, ValuationRequest, valuationRequestDto } from "../types/interfaces";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -5,7 +6,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const createValuation = async (valuationData: ValuationRequest): 
 Promise<valuationRequestDto> => {
-    const token = localStorage.getItem('token');
+    const token = await getFreshJwt();
+    console.log('token type:', typeof token, 'value:', token);
     const res = await fetch(`${API_BASE_URL}/api/valuation/predict`, {
         method: 'POST',
         headers: {
@@ -35,7 +37,7 @@ export const getValuationById = async (id: string): Promise<ValuationDto> => {
 
 
 export const getUserHistory = async (): Promise<Valuation[]> => {
-    const token = localStorage.getItem('token');
+    const token = await getFreshJwt();
     const res = await fetch(`${API_BASE_URL}/api/valuation/history`, {
         method: 'GET',
         headers: {
@@ -52,7 +54,7 @@ export const getUserHistory = async (): Promise<Valuation[]> => {
 }
 
 export const getHistoryById = async (id: string): Promise<HistoryResponse> => {
-    const token = localStorage.getItem('token');
+    const token = await getFreshJwt();
     const res = await fetch(`${API_BASE_URL}/api/valuation/history/${id}`, {
         method: 'GET',
         headers: {

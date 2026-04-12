@@ -15,13 +15,16 @@ const HistoryByIdPage = () => {
     return (
         <div className="min-h-screen bg-white">
             <nav className="w-screen bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-                    <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
-                    <Link to="/history" className="text-sm text-gray-400 hover:text-gray-900 transition">
-                        ← Back to History
-                    </Link>
-                </div>
-            </nav>
+                    <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                        <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
+                        <button
+                            onClick={() => window.history.back()}
+                            className="text-sm text-gray-900 hover:text-gray-600 transition-colors"
+                        >
+                            Back
+                        </button>
+                    </div>
+                </nav>
 
             <div className="container mx-auto px-4 py-12 max-w-3xl">
                 {isLoading ? (

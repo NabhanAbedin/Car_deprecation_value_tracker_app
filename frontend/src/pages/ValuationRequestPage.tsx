@@ -50,16 +50,52 @@ const ValuationRequestPage = () => {
 
     if (isPending) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
-                <p className="text-gray-400 text-sm">Loading...</p>
+            <div className="min-h-screen bg-white flex flex-col">
+                <nav className="w-screen bg-white border-b border-gray-100">
+                    <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                        <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
+                        <button onClick={() => window.history.back()} className="text-sm text-gray-900 hover:text-gray-600 transition-colors cursor-pointer">← Back</button>
+                    </div>
+                </nav>
+                <div className="flex-1 flex flex-col items-center justify-center gap-4">
+                    <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin" />
+                    <p className="text-gray-400 text-sm tracking-wide">Evaluating your car...</p>
+                </div>
             </div>
         )
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
-                <p className="text-gray-400 text-sm">Error submitting valuation request.</p>
+            <div className="min-h-screen bg-white flex flex-col">
+                <nav className="w-screen bg-white border-b border-gray-100">
+                    <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                        <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
+                        <button
+                            onClick={() => window.history.back()}
+                            className="text-sm text-gray-900 hover:text-gray-600 transition-colors"
+                        >
+                         Back
+                        </button>
+                    </div>
+                </nav>
+                <div className="flex-1 flex flex-col items-center justify-center gap-4 px-4">
+                    <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg className="w-7 h-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-gray-900 font-semibold text-lg tracking-tight">Failed to submit valuation</p>
+                        <p className="text-gray-400 text-sm mt-1">{error.message || 'Something went wrong. Please try again.'}</p>
+                    </div>
+                    <button
+                        onClick={() => evaluate(valuationRequest)}
+                        className="mt-1 bg-gray-900 hover:bg-gray-700 text-white text-sm font-medium px-6 py-2.5 rounded-lg transition-colors cursor-pointer"
+                    >
+                        Retry
+                    </button>
+                </div>
             </div>
         )
     }
@@ -69,7 +105,7 @@ const ValuationRequestPage = () => {
             <nav className="w-screen bg-white border-b border-gray-100">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <h1 className="text-xl font-bold tracking-tight text-gray-900">Car Market</h1>
-                    <Link to="/" className="text-sm text-black hover:text-gray-600 transition-colors">← Back</Link>
+                    <button onClick={() => window.history.back()} className="text-sm text-gray-900 hover:text-gray-600 transition-colors cursor-pointer">← Back</button>
                 </div>
             </nav>
 
@@ -205,7 +241,7 @@ const ValuationRequestPage = () => {
                     <div className="mt-10 pt-8 border-t border-gray-100 text-center">
                         <p className="text-sm text-gray-400 mb-4">Valuation completed successfully</p>
                         <Link
-                            to={`/valuation/${data.valuationId}`}
+                            to={`/history/${data.valuationId}`}
                             className="inline-block bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl transition"
                         >
                             View Details

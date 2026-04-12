@@ -14,7 +14,7 @@ const VerifyPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!email || sub) navigate('/register');
+        if (!email || !sub) navigate('/register');
     }, [email, sub]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
