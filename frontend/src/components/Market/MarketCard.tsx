@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import type { MarketCardProps } from "../../types/interfaces"
 
 const MarketCard = ({marketData}: MarketCardProps) => {
-    console.log(marketData);
     return (
         <div className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-sm transition-shadow">
             <img src={marketData.img} alt={`${marketData.brand} ${marketData.model}`} className="w-full h-36 object-cover" />

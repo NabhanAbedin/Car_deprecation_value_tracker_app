@@ -1,12 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
 import { type MarketNavProps } from "../../types/interfaces";
 import { userPool } from "../../lib/cognito";
+import { getFreshJwt } from "../../lib/getFreshJWT";
+import { useEffect, useState } from "react";
 
 
 
 const MarketNav = ({showMarketSearch, setShowMarketSearch}: MarketNavProps) => {
-    const isLoggedIn = !!localStorage.getItem('token');
+    const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
     const navigate = useNavigate();
+    const [isAdmin, setIsAdmin] = useState<Boolean | null>(null);
+
+    useEffect(() => {
+        getFreshJwt().then(token => {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            if (payload) setIsLoggedIn(true);
+            setIsAdmin((payload['cognito:groups'] ?? []).includes('Admin'));
+        }).catch(() => setIsAdmin(false));
+    },[])
 
     const logOut = () => {
         const user = userPool.getCurrentUser();
@@ -42,6 +53,9 @@ const MarketNav = ({showMarketSearch, setShowMarketSearch}: MarketNavProps) => {
                             <Link to={'/login'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Log in</Link>
                             <Link to={'/register'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Register</Link>
                         </>
+                    )}
+                    {isAdmin && (
+                        <Link to={'/upload'} className="text-gray-900 hover:text-gray-600 transition-colors no-underline">Upload</Link>
                     )}
                 </div>
             </div>

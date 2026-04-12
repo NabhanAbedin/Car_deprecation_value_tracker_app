@@ -39,7 +39,7 @@ public class MarketController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpPost("/upload-data")]
+    [HttpPost("upload-data")]
     public async Task<IActionResult> UploadMarketData(IFormFile file)
     {
         if (file == null || file.Length == 0)
