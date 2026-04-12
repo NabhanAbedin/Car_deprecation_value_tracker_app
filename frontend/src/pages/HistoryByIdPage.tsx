@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getHistoryById } from "../api/valuationApi";
 import type { HistoryResponse } from "../types/interfaces";

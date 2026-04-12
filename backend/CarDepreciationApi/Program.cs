@@ -95,7 +95,10 @@ using (var scope = app.Services.CreateScope())
 }
 
 
-
+if (!app.Environment.IsDevelopment())
+{
+    app.UseMiddleware<CarDepreciationApi.middleware.GatewaySecretMiddleware>();
+}
 
 app.UseHttpsRedirection();
 app.UseCors();
