@@ -21,7 +21,7 @@ def handler(event,context):
     try: 
         with conn.cursor() as cur:
             cur.execute(
-                'INSERT INTO "User" ("Id","Email","created_at") VALUES (%s, %s,%s)', (user_id, email, created_at)
+                'INSERT INTO "User" ("Id","Email","CreatedAt") VALUES (%s, %s,%s)', (user_id, email, created_at)
             )
         conn.commit()
     finally:
