@@ -1,3 +1,4 @@
+
 # Car Depreciation Value Tracker
 
 A specialized vehicle valuation engine designed for luxury car collectors. Unlike traditional calculators that use flat percentage drops, this platform utilizes a **K-Nearest Neighbors (KNN) model** to provide estimates based on historical similarity vectors.
@@ -7,7 +8,7 @@ A specialized vehicle valuation engine designed for luxury car collectors. Unlik
 ## Architecture & Cloud Infrastructure
 
 ### Diagram
-<img width="895" height="580" alt="Screenshot 2026-03-08 at 1 03 41 AM" src="https://github.com/user-attachments/assets/acb8e905-f76b-4e21-93dd-4e40c923c61a" />
+<img width="640" height="515" alt="Screenshot 2026-05-03 at 12 28 48 AM" src="https://github.com/user-attachments/assets/2d67b18d-1dd6-4111-a861-907c2198d2b8" />
 
 
 The infrastructure is built on AWS with a focus on **cost-optimization** and **"Just-in-Time" processing**.
