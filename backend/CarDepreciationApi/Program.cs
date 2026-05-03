@@ -60,11 +60,12 @@ builder.Services.AddScoped<IValuationService, ValuationService>();
 builder.Services.AddScoped<IMarketService, MarketService>();
 builder.Services.AddScoped<ICalculationService, CalcluationService>();
 builder.Services.AddSingleton<IAmazonLambda>(new AmazonLambdaClient(RegionEndpoint.USEast1));
+builder.Services.AddScoped<IUserService, UserService>();
 
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddScoped<IKnnService, DevKnnService>();
-    builder.Services.AddScoped<IUserService, UserService>();
+    
 }
 else
 {
