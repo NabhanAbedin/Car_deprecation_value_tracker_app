@@ -7,7 +7,7 @@ A specialized vehicle valuation engine designed for luxury car collectors. Unlik
 ## Architecture & Cloud Infrastructure
 
 ### Diagram
-<img width="640" height="515" alt="Screenshot 2026-05-03 at 12 28 48 AM" src="https://github.com/user-attachments/assets/2d67b18d-1dd6-4111-a861-907c2198d2b8" />
+<img width="655" height="527" alt="Screenshot 2026-05-03 at 1 38 44 AM" src="https://github.com/user-attachments/assets/ab9c01d0-019e-4f97-bae4-cc0dc8a0b4d7" />
 
 
 The infrastructure is built on AWS with a focus on **cost-optimization** and **"Just-in-Time" processing**.
