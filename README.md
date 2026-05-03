@@ -1,4 +1,3 @@
-
 # Car Depreciation Value Tracker
 
 A specialized vehicle valuation engine designed for luxury car collectors. Unlike traditional calculators that use flat percentage drops, this platform utilizes a **K-Nearest Neighbors (KNN) model** to provide estimates based on historical similarity vectors.
@@ -84,6 +83,7 @@ The valuation follows a coordinated execution cycle between the C# API, Python L
 ```
 User Input → API Gateway → C# API → Python Lambda (Vectorize) → pgvector HNSW Search → Weighted Average → Valuation
 ```
+<img width="821" height="559" alt="Screenshot 2026-05-03 at 1 28 50 AM" src="https://github.com/user-attachments/assets/718b34fe-379b-497b-902e-d69dc5d93636" />
 
 1. **On-the-Fly Vectorization** — The C# backend invokes a Python Lambda that retrieves a trained scaler from S3, transforming raw user inputs into a normalized feature vector.
 2. **HNSW Search** — The `FeaturesVector` column is indexed using **HNSW (Hierarchical Navigable Small Worlds)**, enabling rapid graph-based retrieval in logarithmic time.
